@@ -1,0 +1,66 @@
+<template>
+  <div class="currenc-container-split">
+    <p>{{ currenc }} {{ balance }}</p>
+    <button @click="show = !show">Ввод</button>
+    <button @click="show = !show">Вывод</button>
+  </div>
+</template>
+<script>
+export default {
+  name: "CurrencButton",
+  props: {
+    currenc: { required: true, type: String },
+    balance: { required: true, type: String },
+  },
+};
+</script>
+<style scoped>
+.container {
+  padding: 0 20%;
+}
+h1 {
+  text-align: center;
+}
+.tax {
+  font-size: 15px;
+  margin: -10px;
+  margin-bottom: 5px;
+  margin-left: 50px;
+}
+.currenc-container-split {
+  background-color: #264653;
+  color: white;
+  float: left;
+  padding: 5px 50px;
+  margin: 5px 10px;
+  text-align: center;
+}
+button {
+  margin: 0 5px;
+  background-color: white;
+  border: 1px solid #2a9d8f;
+  cursor: pointer;
+  text-decoration: none;
+}
+.currenc-send {
+  display: block;
+  background-color: white;
+  margin-left: 20px;
+}
+.currenc-send-input {
+  width: 40%;
+  margin: 10px 15px;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 20px;
+}
+.currenc-send textarea {
+  background-color: white;
+  margin: 0 0 0 50px;
+  border: 1px solid gray;
+}
+.input-value {
+  width: 100px;
+  margin-left: 50px;
+}
+</style>

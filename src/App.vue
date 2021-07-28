@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="container">
+      <h1>Currencies exchange</h1>
+      <div class="currenc-container">
+        <currenc-button
+          :currenc="this.btc"
+          :balance="this.balance"
+        ></currenc-button>
+        <currenc-button
+          :currenc="this.doge"
+          :balance="this.balance"
+        ></currenc-button>
+        <currenc-button :currenc="this.ltc"></currenc-button>
+        <input-form />
+        <currenc-button :currenc="this.shib"></currenc-button>
+        <currenc-button :currenc="this.bnb"></currenc-button>
+        <currenc-button :currenc="this.usd"></currenc-button>
+        <currenc-button :currenc="this.rur"></currenc-button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CurrencButton from "./components/CurrencButton.vue";
+import InputForm from "./components/InputForm.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    CurrencButton,
+    InputForm,
+  },
+  data() {
+    return {
+      btc: "BTC",
+      doge: "DOGE",
+      ltc: "LTC",
+      shib: "SHIB",
+      bnb: "BNB",
+      usd: "USD",
+      rur: "RUR",
+      balance: 0.0,
+    };
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
