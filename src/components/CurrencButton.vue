@@ -1,8 +1,8 @@
 <template>
   <div class="currenc-container-split">
     <p>{{ currenc }} {{ balance }}</p>
-    <button @click="$emit('input-balance')">Ввод</button>
-    <button @click="$emit('withdraw-balance')">Вывод</button>
+    <button @click="$emit('toggle-input')">Ввод</button>
+    <button @click="$emit('toggle-output')">Вывод</button>
   </div>
 </template>
 <script>
@@ -14,4 +14,3 @@ export default {
   },
 };
 </script>
-

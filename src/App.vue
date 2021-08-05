@@ -2,40 +2,64 @@
   <div id="app">
     <div class="container">
       <h1>Currencies exchange</h1>
-      <div class="currenc-container">
+      <div class="tab">
         <currenc-button
-          :currenc="this.btc"
-          :balance="this.balancebtc"
-          @input-balance="toggleInputForm"
-          @withdraw-balance="toggleWithdrawForm"
+          :currenc="Btc.label"
+          :balance="Btc.balance"
+          @toggle-input="toggleInputFormBtc"
+          @toggle-output="toggleOutputFormBtc"
         ></currenc-button>
         <currenc-button
-          :currenc="this.doge"
-          :balance="this.balancedoge"
+          :currenc="Doge.label"
+          :balance="Doge.balance"
+          @toggle-input="toggleInputFormDoge"
         ></currenc-button>
         <currenc-button
-          :currenc="this.ltc"
-          :balance="this.balanceltc"
+          :currenc="Ltc.label"
+          :balance="Ltc.balance"
+          @toggle-input="toggleInputFormLtc"
         ></currenc-button>
-        <div v-show="isInput" class="currenc-send">
-          <input-form @add-balance="addBalance"></input-form>
-        </div>
-        <currenc-button
-          :currenc="this.shib"
-          :balance="this.balanceshib"
-        ></currenc-button>
-        <currenc-button
-          :currenc="this.bnb"
-          :balance="this.balancebnb"
-        ></currenc-button>
-        <currenc-button
-          :currenc="this.usd"
-          :balance="this.balanceusd"
-        ></currenc-button>
-        <currenc-button
-          :currenc="this.rur"
-          :balance="this.balancerur"
-        ></currenc-button>
+      </div>
+      <div class="currenc-send">
+        <input-form
+          :service="accept"
+          :currenc="Btc.label"
+          v-if="this.Btc.isInput"
+          @add-balance="addBalanceBtc"
+          :address="address"
+          :id="id"
+        ></input-form>
+      </div>
+      <div class="currenc-send">
+        <input-form
+          :service="send"
+          :currenc="Btc.label"
+          v-if="this.Btc.isOutput"
+          @add-balance="withdrawBalanceBtc"
+          :address="details"
+          :id="id"
+        ></input-form>
+      </div>
+      <div class="currenc-send">
+        <input-form
+          v-if="this.Doge.isInput"
+          @add-balance="addBalanceDoge"
+          :id="id"
+        ></input-form>
+      </div>
+      <div class="currenc-send">
+        <input-form
+          v-if="this.Ltc.isInput"
+          @add-balance="addBalance"
+        ></input-form>
+      </div>
+      <div class="tab">
+        <currenc-button @toggle-input="toggleInputForm"></currenc-button>
+        <currenc-button></currenc-button>
+        <currenc-button></currenc-button>
+      </div>
+      <div class=".currenc-send">
+        <input-form v-show="isInput"></input-form>
       </div>
     </div>
   </div>
@@ -44,6 +68,7 @@
 <script>
 import CurrencButton from "./components/CurrencButton.vue";
 import InputForm from "./components/InputForm.vue";
+import uniqueId from "lodash.uniqueid";
 
 export default {
   name: "App",
@@ -53,32 +78,56 @@ export default {
   },
   data() {
     return {
-      btc: "BTC",
-      doge: "DOGE",
-      ltc: "LTC",
-      shib: "SHIB",
-      bnb: "BNB",
-      usd: "USD",
-      rur: "RUR",
-      balancebtc: 0,
-      balancedoge: 0,
-      balanceltc: 0,
-      balanceshib: 0,
-      balancebnb: 0,
-      balanceusd: 0,
-      balancerur: 0,
-      isInput: false,
+      Btc: {
+        id: uniqueId("ff-"),
+        label: "BTC",
+        balance: 0,
+        commission: 1.05,
+        isInput: false,
+        isOutput: false,
+      },
+      Doge: { id: uniqueId("ff-"), label: "DOGE", balance: 0, isInput: false },
+      Ltc: { id: uniqueId("ff-"), label: "LTC", balance: 0, isInput: false },
+      Shib: { id: uniqueId("ff-"), label: "SHIB", balance: 0, isInput: false },
+      Bnb: { id: uniqueId("ff-"), label: "BNB", balance: 0, isInput: false },
+      Usd: { id: uniqueId("ff-"), label: "USD", balance: 0, isInput: false },
+      Rur: {
+        id: uniqueId("ff-"),
+        label: "RUR",
+        balance: 0,
+        isInput: false,
+        isOutput: false,
+      },
+      address: "Адрес",
+      details: "Реквизиты",
+      accept: "Ввести на ",
+      send: "Вывести на ",
     };
   },
   methods: {
-    toggleInputForm() {
-      this.isInput = !this.isInput;
+    toggleInputFormBtc() {
+      this.Btc.isOutput ^= this.Btc.isOutput;
+      this.Btc.isInput = !this.Btc.isInput;
     },
-    toggleWithdrawForm() {
-      this.isInput = !this.isInput;
+    toggleOutputFormBtc() {
+      this.Btc.isInput ^= this.Btc.isInput;
+      this.Btc.isOutput = !this.Btc.isOutput;
     },
-    addBalance(balance) {
-      this.balancebtc += Number(balance);
+    addBalanceBtc(balance) {
+      let amount = Number(balance) / this.Btc.commission;
+      return (this.Btc.balance += amount);
+    },
+    withdrawBalanceBtc(balance) {
+      let amount = Number(balance) / this.Btc.commission;
+      return (this.Btc.balance -= amount);
+    },
+
+    toggleInputFormDoge() {
+      this.Doge.isInput = !this.Doge.isInput;
+    },
+
+    addBalanceDoge(balance) {
+      this.Doge.balance += Number(balance);
       console.log("2");
     },
   },

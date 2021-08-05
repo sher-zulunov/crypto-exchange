@@ -10,10 +10,15 @@ h1 {
   margin-bottom: 5px;
   margin-left: 50px;
 }
+.tab {
+  overflow: hidden;
+}
 .currenc-container-split {
   background-color: #264653;
   color: white;
   float: left;
+  border: none;
+  outline: none;
   padding: 30px 70px;
   margin: 5px 10px;
   text-align: center;
@@ -28,9 +33,9 @@ button {
   font-size: 25px;
 }
 .currenc-send {
-  display: block;
-  background-color: white;
+  background-color: inherit;
   margin-left: 20px;
+  float: auto;
 }
 .currenc-send-input {
   width: 40%;
