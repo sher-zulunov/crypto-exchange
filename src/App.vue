@@ -20,7 +20,7 @@
           @toggle-input="toggleInputFormLtc"
         ></currenc-button>
       </div>
-      <div class="currenc-send">
+      <div class="tab">
         <input-form
           :service="accept"
           :currenc="Btc.label"
@@ -30,7 +30,7 @@
           :id="id"
         ></input-form>
       </div>
-      <div class="currenc-send">
+      <div class="tab">
         <input-form
           :service="send"
           :currenc="Btc.label"
@@ -40,14 +40,14 @@
           :id="id"
         ></input-form>
       </div>
-      <div class="currenc-send">
+      <div class="tab">
         <input-form
           v-if="this.Doge.isInput"
           @add-balance="addBalanceDoge"
           :id="id"
         ></input-form>
       </div>
-      <div class="currenc-send">
+      <div class="tab">
         <input-form
           v-if="this.Ltc.isInput"
           @add-balance="addBalance"
@@ -58,7 +58,7 @@
         <currenc-button></currenc-button>
         <currenc-button></currenc-button>
       </div>
-      <div class=".currenc-send">
+      <div class="tab">
         <input-form v-show="isInput"></input-form>
       </div>
     </div>

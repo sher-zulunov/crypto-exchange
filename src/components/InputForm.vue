@@ -1,32 +1,37 @@
 <template>
-  <form @submit.prevent="addBalance">
-    <p>{{ service }} счёт {{ currenc }}</p>
-    <input
-      type="number"
-      class="currenc-send-input"
-      placeholder="сумма"
-      name="balance"
-      v-model.lazy.trim="balance"
-      required
-    />
-    <input
-      class="currenc-send-input"
-      type="text"
-      :placeholder="address"
-      required
-    />
-    <p class="tax">Коммисия 5%</p>
-    <textarea
-      name=""
-      :id="id"
-      cols="70"
-      rows="2"
-      placeholder="Комментарий"
-    ></textarea>
-    <div class="input-value-cont">
-      <input :id="id" class="input-value" type="submit" value="Вывести" />
-    </div>
-  </form>
+  <div class="currenc-send">
+    <form @submit.prevent="addBalance">
+      <p class="tax">{{ service }} счёт {{ currenc }}</p>
+      <p class="tax">Коммисия 5%</p>
+      <input
+        type="number"
+        class="currenc-send-input"
+        placeholder="сумма"
+        name="balance"
+        v-model.lazy.trim="balance"
+        required
+        min="0.003"
+        max="1000"
+      />
+      <input
+        class="currenc-send-input"
+        type="text"
+        :placeholder="address"
+        required
+      />
+
+      <textarea
+        name=""
+        :id="id"
+        cols="60"
+        rows="2"
+        placeholder="Комментарий"
+      ></textarea>
+      <div class="input-value-cont">
+        <input :id="id" class="input-value" type="submit" value="Вывести" />
+      </div>
+    </form>
+  </div>
 </template>
 <script>
 export default {

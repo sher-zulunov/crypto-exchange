@@ -1,25 +1,23 @@
 .container {
-  padding: 0 20%;
+  padding: 0 10%;
 }
 h1 {
   text-align: center;
 }
 .tax {
-  font-size: 15px;
-  margin: -10px;
-  margin-bottom: 5px;
-  margin-left: 50px;
+  margin: 0;
 }
 .tab {
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 .currenc-container-split {
   background-color: #264653;
   color: white;
-  float: left;
   border: none;
   outline: none;
-  padding: 30px 70px;
+  padding: 1vw 5vw;
   margin: 5px 10px;
   text-align: center;
   font-size: 25px;
@@ -30,16 +28,15 @@ button {
   border: 1px solid #2a9d8f;
   cursor: pointer;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 1rem;
 }
 .currenc-send {
-  background-color: inherit;
-  margin-left: 20px;
-  float: auto;
+  overflow: hidden;
+  justify-content: center;
 }
 .currenc-send-input {
-  width: 40%;
-  margin: 10px 15px;
+  width: 45%;
+  margin: 5px 5px;
   background-color: white;
   border: 1px solid gray;
   border-radius: 20px;
@@ -48,8 +45,60 @@ button {
   background-color: white;
   margin: 0 0 0 50px;
   border: 1px solid gray;
+  width: 60%;
 }
 .input-value {
   width: 100px;
   margin-left: 50px;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 0;
+  }
+  .currenc-container-split {
+    padding: 0px 7vw;
+    font-size: 15px;
+    margin: 3px 5px;
+  } 
+  button {
+    margin: 0;
+    font-size: 5px;
+  }
+  .currenc-send {
+    margin: 0 5%;
+  }
+  .currenc-send-input {
+    width: 35%;}
+}
+@media only screen and (min-width: 600px) {
+  .container {
+    padding: 0;
+    
+  }
+  .currenc-container-split {
+    padding: 1vw 5vw;
+    margin: 5px 10px;
+    font-size: 15px;
+  }
+  .tab {
+    margin: 0px auto;
+    
+  }
+  button {
+    margin: 0 1.5px;
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 1441px) {
+  .currenc-send-input {
+    width: 40%;}
+    .currenc-send {
+      width: 80%;
+    }
+}
+@media screen and (min-width: 1880px) {
+  .currenc-send-input {
+    width: 40%;}
 }
